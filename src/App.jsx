@@ -245,10 +245,10 @@ export default function App() {
     if (!/^\d{7,9}$/.test(eNumber)) { setEError("Number must be 7–9 digits."); return; }
     if (equipment.find(e => e.number === eNumber)) { setEError("Number already exists."); return; }
     setEError("");
-    const letters = eLetters.toUpperCase(), number = eNumber, desc = eDesc.trim();
+    const letters = eLetters.toUpperCase(), number = eNumber, description = eDesc.trim();
     setELetters(""); setENumber(""); setEDesc("");
     withBusy(async () => {
-      const { error } = await supabase.from('equipment').insert({ letters, number, desc });
+      const { error } = await supabase.from('equipment').insert({ letters, number, description });
       if (error) throw new Error(error.message);
     });
   };
